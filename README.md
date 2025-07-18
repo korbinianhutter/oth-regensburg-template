@@ -40,4 +40,4 @@ An example configuration is located in [`example/`](./example/main.typ).
 
 ## You like this template? Consider supporting!
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](coff.ee/robert.richter)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://coff.ee/robert.richter)
