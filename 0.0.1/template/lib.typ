@@ -1,4 +1,4 @@
-#import "hpi_template/hpi_title_page.typ": *
+#import "hpi_title_page.typ": *
 
 // The project function defines how your document looks.
 // It takes your content and some metadata and formats it.

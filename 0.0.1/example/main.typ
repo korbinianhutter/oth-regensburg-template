@@ -1,4 +1,4 @@
-#import "hpi_thesis_template.typ": *
+#import "@preview/hpi-thesis:0.0.1": *
 
 #let abstract = [
   This is a very good abstract.
