@@ -1,0 +1,14 @@
+[package]
+name = "hpi-thesis"
+version = "0.0.1"
+entrypoint = "template/lib.typ"
+authors = ["Robert Richter <https://github.com/judgeNotFound>"]
+license = "MIT"
+description = "Bachelor's and Master's Thesis Template for HPI, University of Potsdam."
+keywords = ["HPI", "Hasso Plattner Institut", "Hasso Plattner Institute", "University of Potsdam", "Bachelorthesis", "Masterthesis", "Bachelorarbeit", "Masterarbeit", "thesis"]
+categories = ["thesis"]
+
+[template]
+path = "example"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"
