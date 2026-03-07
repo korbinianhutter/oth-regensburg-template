@@ -1,5 +1,50 @@
 #import "hpi-title-page.typ": *
 
+// Default label sets for English and German.
+#let default-labels-en = (
+  abstract: "Abstract",
+  abstract-de: "Zusammenfassung",
+  acknowledgements: "Acknowledgements",
+  contents: "Contents",
+  bibliography: "Bibliography",
+  declaration-title: "Declaration of Authorship",
+  declaration-text: [
+    I hereby declare that this thesis is my own unaided work. All direct or
+    indirect sources used are acknowledged as references.
+  ],
+  declaration-city: "Potsdam",
+  thesis-purpose: "zur Erlangung des akademischen Grades",
+  study-program-label: "im Studiengang",
+  submitted-on: "eingereicht am",
+  chair-label: "Fachgebiet",
+  faculty: "Digital-Engineering-Fakultät",
+  university: "der Universität Potsdam",
+  examiner: "Gutachter",
+  advisor: "Betreuer",
+)
+
+#let default-labels-de = (
+  abstract: "Zusammenfassung (Englisch)",
+  abstract-de: "Zusammenfassung",
+  acknowledgements: "Danksagung",
+  contents: "Inhaltsverzeichnis",
+  bibliography: "Literaturverzeichnis",
+  declaration-title: "Eigenständigkeitserklärung",
+  declaration-text: [
+    Ich erkläre hiermit, dass ich die vorliegende Arbeit selbstständig verfasst
+    und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe.
+  ],
+  declaration-city: "Potsdam",
+  thesis-purpose: "zur Erlangung des akademischen Grades",
+  study-program-label: "im Studiengang",
+  submitted-on: "eingereicht am",
+  chair-label: "Fachgebiet",
+  faculty: "Digital-Engineering-Fakultät",
+  university: "der Universität Potsdam",
+  examiner: "Gutachter",
+  advisor: "Betreuer",
+)
+
 // The project function defines how your document looks.
 // It takes your content and some metadata and formats it.
 // Go ahead and customize it to your liking!
@@ -39,16 +84,40 @@
   // Main document font. Defaults to Libertinus Serif (bundled with Typst).
   // Popular alternatives: "New Computer Modern", "STIX Two Text", "Noto Serif"
   font: "Libertinus Serif",
+  // If true, each chapter (level 1 heading) starts on a new page.
+  chapter-pagebreak: false,
+  // Document language (e.g., "en", "de"). Affects label defaults.
+  lang: "en",
+  // Accent color used for headings, title page lines, and header separator.
+  accent-color: rgb("#4f5358"),
+  // Page margins.
+  margin: (left: 35mm, right: 35mm, top: 30mm, bottom: 30mm),
+  // Body text justification.
+  justify: true,
+  // Table of contents heading depth.
+  toc-depth: 4,
+  // Font sizes per heading level.
+  heading-sizes: (h1: 20pt, h2: 16pt, h3: 14pt, h4: 12pt, fallback: 11pt),
+  // Override any translatable string. Merged on top of the language defaults.
+  labels: (:),
   body,
 ) = {
+  // Merge label defaults with user overrides.
+  let base-labels = if lang == "de" { default-labels-de } else { default-labels-en }
+  let valid-keys = base-labels.keys()
+  for key in labels.keys() {
+    assert(key in valid-keys, message: "Unknown label key: " + key)
+  }
+  let l = base-labels + labels
+
   // Set the document's basic properties.
   set document(author: name, title: title)
   set page(
-    margin: (left: 35mm, right: 35mm, top: 30mm, bottom: 30mm),
+    margin: margin,
     numbering: "1",
     number-align: end,
   )
-  set text(font: font, lang: "en")
+  set text(font: font, lang: lang)
   show math.equation: set text(weight: 400)
 
   hpi-title-page(
@@ -61,6 +130,8 @@
     chair: chair,
     type: type,
     date: date,
+    accent-color: accent-color,
+    labels: l,
   )
 
   // Helper to render a heading with its numbering.
@@ -84,39 +155,36 @@
   }
 
   // Configure chapter headings (level 1).
-  show heading.where(level: 1): it => styled-heading(
-    it,
-    20pt,
-    rgb("#4f5358"),
-    5%,
-    1.5em,
-  )
+  show heading.where(level: 1): it => {
+    if chapter-pagebreak { pagebreak(weak: true) }
+    styled-heading(it, heading-sizes.at("h1"), accent-color, 5%, 1.5em)
+  }
 
   // Configure section headings (levels 2-4).
   show heading.where(level: 2): it => styled-heading(
     it,
-    16pt,
-    rgb("#4f5358"),
+    heading-sizes.at("h2"),
+    accent-color,
     2%,
     0.75em,
   )
   show heading.where(level: 3): it => styled-heading(
     it,
-    14pt,
-    rgb("#4f5358"),
+    heading-sizes.at("h3"),
+    accent-color,
     2%,
     0pt,
   )
   show heading.where(level: 4): it => styled-heading(
     it,
-    12pt,
-    rgb("#4f5358"),
+    heading-sizes.at("h4"),
+    accent-color,
     2%,
     0pt,
   )
 
   // Fallback for deeper heading levels.
-  show heading: set text(11pt, weight: 400)
+  show heading: set text(heading-sizes.at("fallback"), weight: 400)
 
   // Helper: insert a front matter section followed by a page break.
   let front-section(title-text, content) = {
@@ -136,28 +204,28 @@
   counter(page).update(1)
   set page(numbering: "i")
 
-  front-section("Abstract", abstract)
+  front-section(l.at("abstract"), abstract)
 
   if abstract-de != "" {
-    front-section("Zusammenfassung", abstract-de)
+    front-section(l.at("abstract-de"), abstract-de)
   }
 
   if acknowledgements != "" {
-    front-section("Acknowledgements", acknowledgements)
+    front-section(l.at("acknowledgements"), acknowledgements)
   }
 
   // Table of contents.
   outline(
     title: [
-      #text(size: 20pt, fill: rgb("#4f5358"), "Contents")
+      #text(size: heading-sizes.at("h1"), fill: accent-color, l.at("contents"))
     ],
-    depth: 4,
+    depth: toc-depth,
   )
   pagebreak()
   if for-print { pagebreak() }
 
   // Main body.
-  set par(justify: true)
+  set par(justify: justify)
 
   // Creates a pagebreak to the given parity where empty pages
   // can be detected via `is-page-empty`.
@@ -214,7 +282,7 @@
           if calc.odd(i) [#i],
         )
       }
-      align(center, line(length: 100%, stroke: 0.5pt + rgb("#4f5358")))
+      align(center, line(length: 100%, stroke: 0.5pt + accent-color))
     },
   )
   set heading(numbering: "1.1.1.1")
@@ -225,20 +293,17 @@
   // Bibliography.
   if bibliography-file != none {
     pagebreak()
-    bibliography(bibliography-file, title: "Bibliography")
+    bibliography(bibliography-file, title: l.at("bibliography"))
   }
 
   pagebreak()
-  heading(level: 1, numbering: none, "Declaration of Authorship")
+  heading(level: 1, numbering: none, l.at("declaration-title"))
 
   v(0.5cm)
-  block[
-    I hereby declare that this thesis is my own unaided work. All direct or
-    indirect sources used are acknowledged as references.
-  ]
+  block(l.at("declaration-text"))
 
   v(1.5cm)
-  [Potsdam, #date]
+  [#l.at("declaration-city"), #date]
   v(1cm)
   grid(
     columns: (1fr, 1fr),

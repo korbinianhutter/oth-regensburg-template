@@ -8,6 +8,8 @@
   study-program: "",
   date: "",
   type: "Bachelor",
+  accent-color: rgb("#4f5358"),
+  labels: (:),
 ) = {
   let (thesis-kind, degree, abbreviation) = if type == "Master" {
     ("Universitätsmasterarbeit", "Master of Science", "M.Sc.")
@@ -28,17 +30,17 @@
     )
 
     #align(center, block[
-      #line(length: 100%, stroke: 0.75pt + rgb("#4f5358"))\
+      #line(length: 100%, stroke: 0.75pt + accent-color)\
       #text(2em, weight: "bold", title) \ \
       #text(1.5em, translation) \ \
-      #line(length: 100%, stroke: 0.75pt + rgb("#4f5358"))
+      #line(length: 100%, stroke: 0.75pt + accent-color)
     ])
 
     #align(center, text(1.5em, weight: "bold", name))
 
     #align(center, block[
       #thesis-kind\
-      zur Erlangung des akademischen Grades
+      #labels.at("thesis-purpose")
     ])
 
     #align(center, text(1.5em, block[
@@ -47,24 +49,24 @@
     ]))
 
     #align(center, block[
-      im Studiengang \
+      #labels.at("study-program-label") \
       #study-program
     ])
 
     #align(center, block[
-      eingereicht am #date am \
-      Fachgebiet #chair der \
-      Digital-Engineering-Fakultät \
-      der Universität Potsdam
+      #labels.at("submitted-on") #date am \
+      #labels.at("chair-label") #chair der \
+      #labels.at("faculty") \
+      #labels.at("university")
     ])
 
     #v(1cm)
     #align(center, grid(
       columns: (1fr, 1.8fr),
       rows: (18pt, 18pt),
-      grid.cell(align(left, text(weight: "bold", "Gutachter"))),
+      grid.cell(align(left, text(weight: "bold", labels.at("examiner")))),
       grid.cell(align(left, professor)),
-      grid.cell(align(left, text(weight: "bold", "Betreuer"))),
+      grid.cell(align(left, text(weight: "bold", labels.at("advisor")))),
       grid.cell(align(left, advisors.join(", "))),
     ))
   ]

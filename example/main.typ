@@ -33,6 +33,13 @@
   // template/lib.typ — use "../example/references.bib" instead.
   // With the @preview package import, "references.bib" works as expected.
   bibliography-file: "../example/references.bib",
+  // lang: "de",                              // Switch all labels to German defaults
+  // accent-color: rgb("#B1063A"),             // HPI red instead of default gray
+  // margin: (left: 30mm, right: 30mm, top: 25mm, bottom: 25mm),
+  // justify: false,                           // Ragged-right body text
+  // toc-depth: 2,                             // Shallower table of contents
+  // heading-sizes: (h1: 22pt, h2: 18pt, h3: 15pt, h4: 13pt, fallback: 12pt),
+  // labels: (declaration-city: "Berlin"),      // Override individual labels
 )
 
 = Introduction
