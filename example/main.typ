@@ -1,4 +1,6 @@
-#import "@preview/hpi-thesis:0.0.1": *
+// When using this template as a package, replace the import below with:
+// #import "@preview/hpi-thesis:<version>": *
+#import "../template/lib.typ": *
 
 #let abstract = [
   This is a very good abstract.
@@ -13,6 +15,7 @@
 ]
 
 #show: project.with(
+  // font: "STIX Two Text",  // Override the default font
   title: "My Very Long, Informative, Expressive, and Definitely Fancy Title",
   translation: "Eine adäquate Übersetzung meines Titels",
   name: "Max Mustermann",
@@ -25,11 +28,17 @@
   abstract-de: abstract-de,
   acknowledgements: acknowledgements,
   type: "Master",
-  for-print: false
+  for-print: false,
+  // Note: when using a local import, the bibliography path resolves relative to
+  // template/lib.typ — use "../example/references.bib" instead.
+  // With the @preview package import, "references.bib" works as expected.
+  bibliography-file: "../example/references.bib",
 )
 
 = Introduction
 #lorem(80)
+
+As shown by Doe and Smith @example2025, this approach is effective.
 
 == In this paper
 #lorem(20)
@@ -39,9 +48,6 @@
 
 ==== Really Small Stuff
 #lorem(20)
-
-===== 5th Level
-Are you sure you want to use this?
 
 = Related Work
 #lorem(500)

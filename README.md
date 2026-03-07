@@ -1,14 +1,17 @@
-# Cleanified HPI Thesis Template
+# HPI Thesis Template
 
-This template is for HPI students writing their Bachelor's or Master's thesis. It is intended to follow a clean asthetic.
+This template is for HPI students writing their Bachelor's or Master's thesis. It is intended to follow a clean aesthetic.
+
+![Thumbnail](./thumbnail.png)
 
 ## ⚠️ Disclaimer
+
 - This template is not official.
 - Official university guidelines may differ from the ones used in this template.
 
 ## Getting Started
 
-```
+```bash
 typst init @preview/hpi-thesis
 ```
 
@@ -17,7 +20,7 @@ typst init @preview/hpi-thesis
 An example configuration is located in [`example/`](./example/main.typ).
 
 ```typst
-#import "@preview/cleanified-hpi-thesis:0.0.1": *
+#import "@preview/hpi-thesis:0.1.0": *
 
 #show: project.with(
   title: "My Very Long, Informative, Expressive, and Definitely Fancy Title",
@@ -41,9 +44,3 @@ An example configuration is located in [`example/`](./example/main.typ).
 ## Copyright Notes
 
 Please note that the logos are University of Potsdam ([UP Logo Usage Guidelines](https://www.uni-potsdam.de/fileadmin/projects/zim/files/MMP/PDF_Dateien_MMP/250509-Leitfaden_DigitalPrint-web.pdf)) and Hasso Plattner Institute ([HPI Logo Usage Guidelines](https://hpi.de/en/imprint/)).
-
-## You like this template? Consider supporting!
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://coff.ee/robert.richter)
-
-![](./0.0.1/thumbnail.png)

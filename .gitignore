@@ -1,0 +1,4 @@
+*.pdf
+
+.claude/
+CLAUDE.md
