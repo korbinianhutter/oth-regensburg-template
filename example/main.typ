@@ -1,6 +1,6 @@
-// When using this template as a package, replace the import below with:
-// #import "@preview/hpi-thesis:<version>": *
-#import "../template/lib.typ": *
+// For local development, replace the import below with:
+// #import "../template/lib.typ": *
+#import "@preview/cleanified-hpi-thesis:0.1.0": *
 
 #let abstract = [
   This is a very good abstract.
@@ -15,7 +15,6 @@
 ]
 
 #show: project.with(
-  // font: "STIX Two Text",  // Override the default font
   title: "My Very Long, Informative, Expressive, and Definitely Fancy Title",
   translation: "Eine adäquate Übersetzung meines Titels",
   name: "Max Mustermann",
@@ -28,18 +27,15 @@
   abstract-de: abstract-de,
   acknowledgements: acknowledgements,
   type: "Master",
-  for-print: false,
-  // Note: when using a local import, the bibliography path resolves relative to
-  // template/lib.typ — use "../example/references.bib" instead.
-  // With the @preview package import, "references.bib" works as expected.
-  bibliography-file: "../example/references.bib",
-  // lang: "de",                              // Switch all labels to German defaults
-  // accent-color: rgb("#B1063A"),             // HPI red instead of default gray
-  // margin: (left: 30mm, right: 30mm, top: 25mm, bottom: 25mm),
-  // justify: false,                           // Ragged-right body text
-  // toc-depth: 2,                             // Shallower table of contents
-  // heading-sizes: (h1: 22pt, h2: 18pt, h3: 15pt, h4: 13pt, fallback: 12pt),
-  // labels: (declaration-city: "Berlin"),      // Override individual labels
+  // Note: for local development with the "../template/lib.typ" import, the
+  // bibliography path resolves relative to template/lib.typ — use
+  // "../example/references.bib" instead.
+  bibliography-file: "references.bib",
+  // lang: "de",  // Switch all labels to German defaults
+  // typography: (font: "STIX Two Text", body-text-size: 12pt),
+  // layout: (for-print: true, toc-depth: 2),
+  // appearance: (accent-color: rgb("#B1063A")),
+  // labels: (declaration-city: "Berlin"),
 )
 
 = Introduction

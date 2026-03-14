@@ -1,14 +1,35 @@
 [package]
-name = "hpi-thesis"
+name = "cleanified-hpi-thesis"
 version = "0.1.0"
 entrypoint = "template/lib.typ"
-authors = ["Robert Richter <https://github.com/judgeNotFound>"]
+authors = [
+    "Robert Richter <https://github.com/judgeNotFound>",
+    "Felix Hoffmann <https://github.com/felixhoffmnn>",
+]
 license = "MIT"
-disciplines = ["computer-science", "engineering", "mathematics", "medicine", "business"]
-description = "Clean-Aesthetic Bachelor's and Master's thesis for HPI, University of Potsdam."
+disciplines = [
+    "computer-science",
+    "engineering",
+    "mathematics",
+    "medicine",
+    "business",
+]
+description = "A clean Typst thesis template for Bachelor's and Master's theses at HPI, University of Potsdam."
 repository = "https://gitlab.hpi.de/robert.richter/typst-thesis-template/"
-keywords = ["HPI", "Hasso Plattner Institut", "Hasso Plattner Institute", "University of Potsdam", "Bachelorthesis", "Masterthesis", "Bachelorarbeit", "Masterarbeit", "thesis"]
+keywords = [
+    "HPI",
+    "Hasso-Plattner-Institut",
+    "Hasso Plattner Institute",
+    "University of Potsdam",
+    "Bachelorthesis",
+    "Masterthesis",
+    "Bachelorarbeit",
+    "Masterarbeit",
+    "thesis",
+]
 categories = ["thesis"]
+compiler = "0.12.0"
+exclude = ["example/main.pdf"]
 
 [template]
 path = "example"

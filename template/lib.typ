@@ -1,6 +1,9 @@
-#import "hpi-title-page.typ": *
+#import "hpi-title-page.typ": hpi-title-page
 
 // Default label sets for English and German.
+// English labels use German strings for the title page because HPI requires
+// a German title page regardless of thesis language. Only structural labels
+// (abstract, contents, declaration, etc.) are translated to English.
 #let default-labels-en = (
   abstract: "Abstract",
   abstract-de: "Zusammenfassung",
@@ -16,11 +19,19 @@
   thesis-purpose: "zur Erlangung des akademischen Grades",
   study-program-label: "im Studiengang",
   submitted-on: "eingereicht am",
+  submitted-on-suffix: "am",
   chair-label: "Fachgebiet",
+  chair-suffix: "der",
   faculty: "Digital-Engineering-Fakultät",
   university: "der Universität Potsdam",
   examiner: "Gutachter",
   advisor: "Betreuer",
+  bachelor-thesis-kind: "Universitätsbachelorarbeit",
+  bachelor-degree: "Bachelor of Science",
+  bachelor-abbreviation: "B.Sc.",
+  master-thesis-kind: "Universitätsmasterarbeit",
+  master-degree: "Master of Science",
+  master-abbreviation: "M.Sc.",
 )
 
 #let default-labels-de = (
@@ -32,17 +43,50 @@
   declaration-title: "Eigenständigkeitserklärung",
   declaration-text: [
     Ich erkläre hiermit, dass ich die vorliegende Arbeit selbstständig verfasst
-    und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe.
+    und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet
+    habe.
   ],
   declaration-city: "Potsdam",
   thesis-purpose: "zur Erlangung des akademischen Grades",
   study-program-label: "im Studiengang",
   submitted-on: "eingereicht am",
+  submitted-on-suffix: "am",
   chair-label: "Fachgebiet",
+  chair-suffix: "der",
   faculty: "Digital-Engineering-Fakultät",
   university: "der Universität Potsdam",
   examiner: "Gutachter",
   advisor: "Betreuer",
+  bachelor-thesis-kind: "Universitätsbachelorarbeit",
+  bachelor-degree: "Bachelor of Science",
+  bachelor-abbreviation: "B.Sc.",
+  master-thesis-kind: "Universitätsmasterarbeit",
+  master-degree: "Master of Science",
+  master-abbreviation: "M.Sc.",
+)
+
+// Default typography settings (font, sizes, spacing).
+#let default-typography = (
+  font: "Libertinus Serif",
+  body-text-size: 11pt,
+  line-spacing: 0.65em,
+  justify: true,
+  heading-sizes: (h1: 20pt, h2: 16pt, h3: 14pt, h4: 12pt, fallback: 11pt),
+)
+
+// Default layout settings (margins, print mode, ToC depth).
+#let default-layout = (
+  margin: (left: 35mm, right: 35mm, top: 30mm, bottom: 30mm),
+  for-print: false,
+  chapter-pagebreak: false,
+  toc-depth: 4,
+)
+
+// Default appearance settings (colors, logos).
+#let default-appearance = (
+  accent-color: rgb("#4f5358"),
+  university-logo: "up-logo.svg",
+  institute-logo: "hpi-logo.svg",
 )
 
 // The project function defines how your document looks.
@@ -73,37 +117,33 @@
   // If not given, the page for German translation of abstract will not appear
   abstract-de: "",
   // The student may want to add acknowledgements
-  // If not giving, the page for acknowledgements will not appear
+  // If not given, the page for acknowledgements will not appear
   acknowledgements: "",
-  // Determines if the document is intended for print or electronic use.
-  // If for_print: true is set, additional pages will be added.
-  for-print: false,
   // Optional path to a bibliography file (e.g., "references.bib").
   // If provided, a bibliography section will be added at the end.
   bibliography-file: none,
-  // Main document font. Defaults to Libertinus Serif (bundled with Typst).
-  // Popular alternatives: "New Computer Modern", "STIX Two Text", "Noto Serif"
-  font: "Libertinus Serif",
-  // If true, each chapter (level 1 heading) starts on a new page.
-  chapter-pagebreak: false,
   // Document language (e.g., "en", "de"). Affects label defaults.
   lang: "en",
-  // Accent color used for headings, title page lines, and header separator.
-  accent-color: rgb("#4f5358"),
-  // Page margins.
-  margin: (left: 35mm, right: 35mm, top: 30mm, bottom: 30mm),
-  // Body text justification.
-  justify: true,
-  // Table of contents heading depth.
-  toc-depth: 4,
-  // Font sizes per heading level.
-  heading-sizes: (h1: 20pt, h2: 16pt, h3: 14pt, h4: 12pt, fallback: 11pt),
+  // Typography settings (font, sizes, spacing). Merged with defaults.
+  typography: (:),
+  // Layout settings (margins, print mode, ToC depth). Merged with defaults.
+  layout: (:),
+  // Appearance settings (colors, logos). Merged with defaults.
+  appearance: (:),
   // Override any translatable string. Merged on top of the language defaults.
   labels: (:),
   body,
 ) = {
+  // Merge group defaults with user overrides.
+  let typo = default-typography + typography
+  let typo = typo + (heading-sizes: default-typography.heading-sizes + typography.at("heading-sizes", default: (:)))
+  let lay = default-layout + layout
+  let app = default-appearance + appearance
+
   // Merge label defaults with user overrides.
-  let base-labels = if lang == "de" { default-labels-de } else { default-labels-en }
+  let base-labels = if lang == "de" { default-labels-de } else {
+    default-labels-en
+  }
   let valid-keys = base-labels.keys()
   for key in labels.keys() {
     assert(key in valid-keys, message: "Unknown label key: " + key)
@@ -113,11 +153,12 @@
   // Set the document's basic properties.
   set document(author: name, title: title)
   set page(
-    margin: margin,
+    margin: lay.margin,
     numbering: "1",
     number-align: end,
   )
-  set text(font: font, lang: lang)
+  set text(font: typo.font, size: typo.body-text-size, lang: lang)
+  set par(leading: typo.line-spacing)
   show math.equation: set text(weight: 400)
 
   hpi-title-page(
@@ -130,7 +171,9 @@
     chair: chair,
     type: type,
     date: date,
-    accent-color: accent-color,
+    accent-color: app.accent-color,
+    university-logo: app.university-logo,
+    institute-logo: app.institute-logo,
     labels: l,
   )
 
@@ -156,49 +199,49 @@
 
   // Configure chapter headings (level 1).
   show heading.where(level: 1): it => {
-    if chapter-pagebreak { pagebreak(weak: true) }
-    styled-heading(it, heading-sizes.at("h1"), accent-color, 5%, 1.5em)
+    if lay.chapter-pagebreak { pagebreak(weak: true) }
+    styled-heading(it, typo.heading-sizes.at("h1"), app.accent-color, 5%, 1.5em)
   }
 
   // Configure section headings (levels 2-4).
   show heading.where(level: 2): it => styled-heading(
     it,
-    heading-sizes.at("h2"),
-    accent-color,
+    typo.heading-sizes.at("h2"),
+    app.accent-color,
     2%,
     0.75em,
   )
   show heading.where(level: 3): it => styled-heading(
     it,
-    heading-sizes.at("h3"),
-    accent-color,
+    typo.heading-sizes.at("h3"),
+    app.accent-color,
     2%,
     0pt,
   )
   show heading.where(level: 4): it => styled-heading(
     it,
-    heading-sizes.at("h4"),
-    accent-color,
+    typo.heading-sizes.at("h4"),
+    app.accent-color,
     2%,
     0pt,
   )
 
   // Fallback for deeper heading levels.
-  show heading: set text(heading-sizes.at("fallback"), weight: 400)
+  show heading: set text(typo.heading-sizes.at("fallback"), weight: 400)
 
   // Helper: insert a front matter section followed by a page break.
   let front-section(title-text, content) = {
     heading(level: 1, numbering: none, title-text)
     v(0.5cm)
-    text(content)
+    content
     pagebreak()
-    if for-print { pagebreak() }
+    if lay.for-print { pagebreak() }
   }
 
   // Front matter (unnumbered pages).
   set page(numbering: none)
   pagebreak()
-  if for-print { pagebreak() }
+  if lay.for-print { pagebreak() }
 
   // Roman-numbered front matter.
   counter(page).update(1)
@@ -217,15 +260,15 @@
   // Table of contents.
   outline(
     title: [
-      #text(size: heading-sizes.at("h1"), fill: accent-color, l.at("contents"))
+      #text(size: typo.heading-sizes.at("h1"), fill: app.accent-color, l.at("contents"))
     ],
-    depth: toc-depth,
+    depth: lay.toc-depth,
   )
   pagebreak()
-  if for-print { pagebreak() }
+  if lay.for-print { pagebreak() }
 
   // Main body.
-  set par(justify: justify)
+  set par(justify: typo.justify)
 
   // Creates a pagebreak to the given parity where empty pages
   // can be detected via `is-page-empty`.
@@ -263,8 +306,10 @@
       let body-start-page = query(<body-start>).first().location().page()
       let i = here().page() - body-start-page + 1
 
-      // Skip headers on pages that start a chapter heading.
-      if query(heading).any(it => it.location().page() == here().page()) {
+      // Skip headers on pages that start a chapter heading (level 1 only).
+      if query(heading.where(level: 1)).any(it => (
+        it.location().page() == here().page()
+      )) {
         return
       }
 
@@ -272,7 +317,6 @@
       let before = query(selector(heading).before(here()))
       if before != () {
         set text(0.95em)
-        let header = before.last().body
         let author = text(style: "italic", name)
         grid(
           columns: (1fr, 10fr, 1fr),
@@ -282,7 +326,7 @@
           if calc.odd(i) [#i],
         )
       }
-      align(center, line(length: 100%, stroke: 0.5pt + accent-color))
+      align(center, line(length: 100%, stroke: 0.5pt + app.accent-color))
     },
   )
   set heading(numbering: "1.1.1.1")
@@ -297,6 +341,7 @@
   }
 
   pagebreak()
+  if lay.for-print { pagebreak() }
   heading(level: 1, numbering: none, l.at("declaration-title"))
 
   v(0.5cm)

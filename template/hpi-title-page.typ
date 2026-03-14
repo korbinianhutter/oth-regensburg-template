@@ -6,15 +6,19 @@
   title: "",
   translation: "",
   study-program: "",
-  date: "",
-  type: "Bachelor",
+  date: none,
+  type: "",
   accent-color: rgb("#4f5358"),
+  university-logo: "up-logo.svg",
+  institute-logo: "hpi-logo.svg",
   labels: (:),
 ) = {
+  assert(type in ("Bachelor", "Master", ""), message: "type must be 'Bachelor' or 'Master'")
+
   let (thesis-kind, degree, abbreviation) = if type == "Master" {
-    ("Universitätsmasterarbeit", "Master of Science", "M.Sc.")
+    (labels.at("master-thesis-kind"), labels.at("master-degree"), labels.at("master-abbreviation"))
   } else {
-    ("Universitätsbachelorarbeit", "Bachelor of Science", "B.Sc.")
+    (labels.at("bachelor-thesis-kind"), labels.at("bachelor-degree"), labels.at("bachelor-abbreviation"))
   }
 
   page(footer: [])[
@@ -22,10 +26,10 @@
     #grid(
       columns: (1fr, 1fr),
       rows: (80pt, 80pt),
-      grid.cell(image("up-logo.svg", alt: "University of Potsdam logo")),
+      grid.cell(image(university-logo, alt: "University logo")),
       grid.cell(align(right, image(
-        "hpi-logo.svg",
-        alt: "Hasso Plattner Institute logo",
+        institute-logo,
+        alt: "Institute logo",
       ))),
     )
 
@@ -54,8 +58,8 @@
     ])
 
     #align(center, block[
-      #labels.at("submitted-on") #date am \
-      #labels.at("chair-label") #chair der \
+      #labels.at("submitted-on") #date #labels.at("submitted-on-suffix") \
+      #labels.at("chair-label") #chair #labels.at("chair-suffix") \
       #labels.at("faculty") \
       #labels.at("university")
     ])
