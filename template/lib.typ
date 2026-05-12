@@ -24,6 +24,7 @@
   faculty-suffix: "at the",
   university: "OTH Regensburg",
   examiner: "Examiner",
+  second-examiner: "Second Examiner",
   advisor: "Advisor",
   bachelor-thesis-kind: "Bachelor's Thesis",
   bachelor-degree: "Bachelor of Science",
@@ -55,6 +56,7 @@
   faculty-suffix: "der",
   university: "OTH Regensburg",
   examiner: "Prüfer",
+  second-examiner: "Zweitprüfer",
   advisor: "Betreuer",
   bachelor-thesis-kind: "Bachelorarbeit",
   bachelor-degree: "Bachelor of Science",
@@ -108,6 +110,8 @@
   study-program: "",
   // First advising professor
   professor: "",
+  // Second examiner (optional)
+  second-professor: "",
   // List of Advisors (e.g., ("Karla Musterfrau", "Max Mustermann"))
   advisors: (),
   // The abstract of the thesis
@@ -162,6 +166,7 @@
 
   oth-title-page(
     professor: professor,
+    second-professor: second-professor,
     name: name,
     student-id: student-id,
     advisors: advisors,

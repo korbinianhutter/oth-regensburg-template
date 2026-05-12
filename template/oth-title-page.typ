@@ -1,5 +1,6 @@
 #let oth-title-page(
   professor: "",
+  second-professor: "",
   advisors: (),
   name: "",
   student-id: "",
@@ -84,6 +85,12 @@
       rows: (18pt, 18pt),
       grid.cell(align(left, text(weight: "bold", labels.at("examiner")))),
       grid.cell(align(left, professor)),
+      ..if second-professor != "" {
+        (
+          grid.cell(align(left, text(weight: "bold", labels.at("second-examiner")))),
+          grid.cell(align(left, second-professor)),
+        )
+      },
       grid.cell(align(left, text(weight: "bold", labels.at("advisor")))),
       grid.cell(align(left, advisors.join(", "))),
     ))

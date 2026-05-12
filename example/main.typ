@@ -22,6 +22,7 @@
   date: "July 17th, 2025",
   study-program: "Computer Science",
   professor: "Prof. Dr. Rosseforp Renttalp",
+  second-professor: "Prof. Dr. Anothera Examinia",
   advisors: ("This person", "Someone Else"),
   abstract: abstract,
   abstract-de: abstract-de,
