@@ -165,6 +165,7 @@
   )
   set text(font: typo.font, size: typo.body-text-size, lang: lang)
   set par(leading: typo.line-spacing)
+  set math.equation(numbering: "(1)")
   show math.equation: set text(weight: 400)
 
   oth-title-page(
