@@ -18,9 +18,7 @@
   thesis-purpose: "in partial fulfillment of the academic degree",
   study-program-label: "in the study program",
   submitted-on: "submitted on",
-  submitted-on-suffix: "on",
-  chair-label: "Department",
-  chair-suffix: "of the",
+  submitted-on-suffix: "to the",
   faculty: "Faculty of Computer Science and Mathematics",
   university: "of the OTH Regensburg",
   examiner: "Examiner",
@@ -49,9 +47,7 @@
   thesis-purpose: "als Teil zur Erlangung des akademischen Grades",
   study-program-label: "im Studiengang",
   submitted-on: "eingereicht am",
-  submitted-on-suffix: "am",
-  chair-label: "Fachgebiet",
-  chair-suffix: "der",
+  submitted-on-suffix: "an der",
   faculty: "Fakultät Informatik und Mathematik",
   university: "der OTH Regensburg",
   examiner: "Gutachter",
@@ -104,8 +100,6 @@
   type: "",
   // Study Program of the student
   study-program: "",
-  // Chair where the thesis is written
-  chair: "",
   // First advising professor
   professor: "",
   // List of Advisors (e.g., ("Karla Musterfrau", "Max Mustermann"))
@@ -167,7 +161,6 @@
     title: title,
     translation: translation,
     study-program: study-program,
-    chair: chair,
     type: type,
     date: date,
     accent-color: app.accent-color,

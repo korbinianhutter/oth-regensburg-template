@@ -1,7 +1,6 @@
 #let oth-title-page(
   professor: "",
   advisors: (),
-  chair: "",
   name: "",
   title: "",
   translation: "",
@@ -61,7 +60,6 @@
 
     #align(center, block[
       #labels.at("submitted-on") #date #labels.at("submitted-on-suffix") \
-      #labels.at("chair-label") #chair #labels.at("chair-suffix") \
       #labels.at("faculty") \
       #labels.at("university")
     ])
