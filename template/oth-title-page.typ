@@ -91,8 +91,8 @@
           grid.cell(align(left, second-professor)),
         )
       },
-      grid.cell(align(left, text(weight: "bold", labels.at("advisor")))),
-      grid.cell(align(left, advisors.join(", "))),
+      grid.cell(align(left, text(weight: "bold", if advisors.len() > 1 { labels.at("advisors") } else { labels.at("advisor") }))),
+      grid.cell(align(left, advisors.join([\ ]))),
     ))
   ]
 }

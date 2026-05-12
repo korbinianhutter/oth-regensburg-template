@@ -31,7 +31,10 @@ An example configuration is located in [`example/`](./example/main.typ).
   study-program: "Computer Science",
   professor: "Prof. Dr. Rosseforp Renttalp",
   second-professor: "Prof. Dr. Anothera Examinia",
-  advisors: ("This person", "Someone Else"),
+  advisors: (
+    "This person",  // Even for a single advisor, Typst requires the subsequent comma!
+    // "Someone Else"  // Add as many advisors as you like
+  ),
   abstract: abstract,
   abstract-de: abstract-de,
   acknowledgements: acknowledgements,
