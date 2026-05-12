@@ -1,11 +1,8 @@
 #let std-bibliography = bibliography
 
-#import "hpi-title-page.typ": hpi-title-page
+#import "oth-title-page.typ": oth-title-page
 
 // Default label sets for English and German.
-// English labels use German strings for the title page because HPI requires
-// a German title page regardless of thesis language. Only structural labels
-// (abstract, contents, declaration, etc.) are translated to English.
 #let default-labels-en = (
   abstract: "Abstract",
   abstract-de: "Zusammenfassung",
@@ -17,21 +14,21 @@
     I hereby declare that this thesis is my own unaided work. All direct or
     indirect sources used are acknowledged as references.
   ],
-  declaration-city: "Potsdam",
-  thesis-purpose: "zur Erlangung des akademischen Grades",
-  study-program-label: "im Studiengang",
-  submitted-on: "eingereicht am",
-  submitted-on-suffix: "am",
-  chair-label: "Fachgebiet",
-  chair-suffix: "der",
-  faculty: "Digital-Engineering-Fakultät",
-  university: "der Universität Potsdam",
-  examiner: "Gutachter",
-  advisor: "Betreuer",
-  bachelor-thesis-kind: "Universitätsbachelorarbeit",
+  declaration-city: "Regensburg",
+  thesis-purpose: "in partial fulfillment of the academic degree",
+  study-program-label: "in the study program",
+  submitted-on: "submitted on",
+  submitted-on-suffix: "on",
+  chair-label: "Department",
+  chair-suffix: "of the",
+  faculty: "Faculty of Computer Science and Mathematics",
+  university: "of the OTH Regensburg",
+  examiner: "Examiner",
+  advisor: "Advisor",
+  bachelor-thesis-kind: "Bachelor's Thesis",
   bachelor-degree: "Bachelor of Science",
   bachelor-abbreviation: "B.Sc.",
-  master-thesis-kind: "Universitätsmasterarbeit",
+  master-thesis-kind: "Master's Thesis",
   master-degree: "Master of Science",
   master-abbreviation: "M.Sc.",
 )
@@ -48,21 +45,21 @@
     und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet
     habe.
   ],
-  declaration-city: "Potsdam",
-  thesis-purpose: "zur Erlangung des akademischen Grades",
+  declaration-city: "Regensburg",
+  thesis-purpose: "als Teil zur Erlangung des akademischen Grades",
   study-program-label: "im Studiengang",
   submitted-on: "eingereicht am",
   submitted-on-suffix: "am",
   chair-label: "Fachgebiet",
   chair-suffix: "der",
-  faculty: "Digital-Engineering-Fakultät",
-  university: "der Universität Potsdam",
+  faculty: "Fakultät Informatik und Mathematik",
+  university: "der OTH Regensburg",
   examiner: "Gutachter",
   advisor: "Betreuer",
-  bachelor-thesis-kind: "Universitätsbachelorarbeit",
+  bachelor-thesis-kind: "Bachelorarbeit",
   bachelor-degree: "Bachelor of Science",
   bachelor-abbreviation: "B.Sc.",
-  master-thesis-kind: "Universitätsmasterarbeit",
+  master-thesis-kind: "Masterarbeit",
   master-degree: "Master of Science",
   master-abbreviation: "M.Sc.",
 )
@@ -87,8 +84,8 @@
 // Default appearance settings (colors, logos).
 #let default-appearance = (
   accent-color: rgb("#4f5358"),
-  university-logo: "up-logo.svg",
-  institute-logo: "hpi-logo.svg",
+  university-logo: "oth-logo.png",
+  institute-logo: "company-logo.svg",
 )
 
 // The project function defines how your document looks.
@@ -163,7 +160,7 @@
   set par(leading: typo.line-spacing)
   show math.equation: set text(weight: 400)
 
-  hpi-title-page(
+  oth-title-page(
     professor: professor,
     name: name,
     advisors: advisors,

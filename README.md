@@ -1,6 +1,8 @@
-# HPI Thesis Template
+# OTH Regensburg Thesis Template
 
-This template is for HPI students writing their Bachelor's or Master's thesis.
+This template is for OTH Regensburg students writing their Bachelor's or Master's thesis.
+
+> This repository is a fork of the [HPI Thesis Template](https://typst.app/universe/package/cleanified-hpi-thesis/) ([Source](https://github.com/felixhoffmnn/hpi-thesis-template)), adapted for OTH Regensburg.
 
 ## Disclaimer
 
@@ -10,7 +12,7 @@ This template is for HPI students writing their Bachelor's or Master's thesis.
 ## Getting Started
 
 ```bash
-typst init @preview/cleanified-hpi-thesis
+typst init @preview/oth-regensburg-thesis
 ```
 
 ## Configuration
@@ -18,32 +20,28 @@ typst init @preview/cleanified-hpi-thesis
 An example configuration is located in [`example/`](./example/main.typ).
 
 ```typst
-#import "@preview/cleanified-hpi-thesis:0.1.0": *
+#import "@preview/oth-regensburg-thesis:0.1.0": *
 
 #show: project.with(
   title: "My Very Long, Informative, Expressive, and Definitely Fancy Title",
   translation: "Eine adäquate Übersetzung meines Titels",
   name: "Max Mustermann",
   date: "17. Juli, 2025",
-  study-program: "IT-Systems Engineering",
+  study-program: "Computer Science",
   chair: "Data-Intensive Internet Computing",
   professor: "Prof. Dr. Rosseforp Renttalp",
   advisors: ("This person", "Someone Else"),
-  abstract: "Some abstract",
-  abstract-de: "Der deutsche Abstract...",
-  acknowledgements: "Thanks to ...",
+  abstract: abstract,
+  abstract-de: abstract-de,
+  acknowledgements: acknowledgements,
   type: "Master",
   bibliography: bibliography("references.bib"),
   // lang: "de",
   // typography: (font: "STIX Two Text", body-text-size: 12pt),
   // layout: (for-print: true, toc-depth: 2),
-  // appearance: (accent-color: rgb("#B1063A")),
-  // labels: (declaration-city: "Berlin"),
+  // appearance: (accent-color: rgb("#164194")),
+  // labels: (declaration-city: "Regensburg"),
 )
 
 ... your content ...
 ```
-
-## Logo Usage
-
-Please note the logo usage guidelines of University of Potsdam ([UP Logo Usage Guidelines](https://www.uni-potsdam.de/fileadmin/projects/zim/files/MMP/PDF_Dateien_MMP/250509-Leitfaden_DigitalPrint-web.pdf)) and Hasso Plattner Institute ([HPI Logo Usage Guidelines](https://hpi.de/en/imprint/)). The logos are subject to copyright of the respective institutions.
