@@ -18,6 +18,7 @@
   title: "My Very Long, Informative, Expressive, and Definitely Fancy Title",
   // translation: "Eine adäquate Übersetzung meines Titels",
   name: "Max Mustermann",
+  student-id: "1234567",
   date: "July 17th, 2025",
   study-program: "Computer Science",
   professor: "Prof. Dr. Rosseforp Renttalp",

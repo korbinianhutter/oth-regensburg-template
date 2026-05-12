@@ -2,6 +2,7 @@
   professor: "",
   advisors: (),
   name: "",
+  student-id: "",
   title: "",
   translation: "",
   study-program: "",
@@ -44,6 +45,11 @@
     ])
 
     #align(center, text(1.5em, weight: "bold", name))
+    #if student-id != "" [
+      #v(-0.6em)
+      #align(center, labels.at("student-id-label") + ": " + student-id)
+      #v(1em)
+    ]
 
     #align(center, block[
       #thesis-kind\

@@ -19,6 +19,7 @@
   study-program-label: "in the study program",
   submitted-on: "submitted on",
   submitted-on-suffix: "to the",
+  student-id-label: "Student ID",
   faculty: "Faculty of Computer Science and Mathematics",
   university: "of the OTH Regensburg",
   examiner: "Examiner",
@@ -48,9 +49,10 @@
   study-program-label: "im Studiengang",
   submitted-on: "eingereicht am",
   submitted-on-suffix: "an der",
+  student-id-label: "Matr.-Nr.",
   faculty: "Fakultät Informatik und Mathematik",
   university: "der OTH Regensburg",
-  examiner: "Gutachter",
+  examiner: "Prüfer",
   advisor: "Betreuer",
   bachelor-thesis-kind: "Bachelorarbeit",
   bachelor-degree: "Bachelor of Science",
@@ -94,6 +96,8 @@
   translation: "",
   // The name of the student writing the thesis
   name: "",
+  // The student ID
+  student-id: "",
   // Date of handing in the thesis
   date: none,
   // "Bachelor" or "Master"
@@ -157,6 +161,7 @@
   oth-title-page(
     professor: professor,
     name: name,
+    student-id: student-id,
     advisors: advisors,
     title: title,
     translation: translation,
