@@ -23,78 +23,93 @@
     (labels.at("bachelor-thesis-kind"), labels.at("bachelor-degree"), labels.at("bachelor-abbreviation"))
   }
 
+  // Title page
   page(footer: [])[
-    // Title page
-    #grid(
+    #let logo-grid = grid(
       columns: (1fr, 1fr),
-      rows: (80pt, 80pt),
+      rows: (80pt,),
       grid.cell(image(university-logo, width: university-logo-width, alt: "OTH Regensburg logo")),
       grid.cell(align(right, if company-logo != none {
         company-logo
       })),
     )
 
-    #align(center, block[
-      #line(length: 100%, stroke: 0.75pt + accent-color)
-      #v(-0.4cm)
-      #text(2em, weight: "bold", title)
-      #v(-0.4cm)
-      #if translation != "" [
-        #v(0.2cm)
-        #text(1.5em, translation)
-        #v(-0.1cm)
-      ]
-      #line(length: 100%, stroke: 0.75pt + accent-color)
-    ])
-    
-    #align(center, text(1.6em, weight: "bold", thesis-kind))
+    #let body-content = {
+      align(center, block({
+        line(length: 100%, stroke: 0.75pt + accent-color)
+        v(-0.4cm)
+        text(2em, weight: "bold", title)
+        v(-0.4cm)
+        if translation != "" {
+          v(0.2cm)
+          text(1.5em, translation)
+          v(-0.1cm)
+        }
+        line(length: 100%, stroke: 0.75pt + accent-color)
+      }))
 
-    #v(0.2em)
-    #align(center, labels.at("thesis-purpose"))
+      align(center, text(1.6em, weight: "bold", thesis-kind))
 
-    #align(center, block[
-      #text(1.5em, block[
-        #degree \
-        #text(style: "italic", "(" + abbreviation + ")")
-      ])
-    ])
+      v(0.2em)
+      align(center, labels.at("thesis-purpose"))
 
-    #align(center, block[
-      #text(labels.at("study-program-label"))
-      #text(1.1em, study-program) \
-      #text(labels.at("submitted-on-suffix"))
-      #text(1.1em, labels.at("faculty")) \
-      #text(labels.at("faculty-suffix"))
-      #text(1.1em, labels.at("university"))
-    ])
+      align(center, block({
+        text(1.5em, block({
+          degree
+          linebreak()
+          text(style: "italic", "(" + abbreviation + ")")
+        }))
+      }))
 
-    #v(1em)
-    #align(center, labels.at("submitted-by"))
+      align(center, block({
+        text(labels.at("study-program-label"))
+        text(1.1em, study-program)
+        linebreak()
+        text(labels.at("submitted-on-suffix"))
+        text(1.1em, labels.at("faculty"))
+        linebreak()
+        text(labels.at("faculty-suffix"))
+        text(1.1em, labels.at("university"))
+      }))
 
-    #align(center, block[
-      #text(1.3em, weight: "bold", name)
-      #if student-id != "" [ \
-        #(labels.at("student-id-label") + ": " + student-id)
-      ]
-    ])
+      v(1em)
+      align(center, labels.at("submitted-by"))
 
-    #v(1em)
-    #align(center, date)
+      align(center, block({
+        text(1.3em, weight: "bold", name)
+        if student-id != "" {
+          linebreak()
+          labels.at("student-id-label") + ": " + student-id
+        }
+      }))
 
-    #v(3em)
-    #align(center, grid(
-      columns: (1fr, 1.8fr),
-      rows: (18pt, 18pt),
-      grid.cell(align(left, text(weight: "bold", labels.at("examiner")))),
-      grid.cell(align(left, professor)),
-      ..if second-professor != "" {
-        (
-          grid.cell(align(left, text(weight: "bold", labels.at("second-examiner")))),
-          grid.cell(align(left, second-professor)),
-        )
-      },
-      grid.cell(align(left, text(weight: "bold", if advisors.len() > 1 { labels.at("advisors") } else { labels.at("advisor") }))),
-      grid.cell(align(left, advisors.join([\ ]))),
-    ))
+      v(1em)
+      align(center, date)
+
+      v(3em)
+      align(center, grid(
+        columns: (1fr, 1.8fr),
+        rows: (18pt, 18pt),
+        grid.cell(align(left, text(weight: "bold", labels.at("examiner")))),
+        grid.cell(align(left, professor)),
+        ..if second-professor != "" {
+          (
+            grid.cell(align(left, text(weight: "bold", labels.at("second-examiner")))),
+            grid.cell(align(left, second-professor)),
+          )
+        },
+        grid.cell(align(left, text(weight: "bold", if advisors.len() > 1 { labels.at("advisors") } else { labels.at("advisor") }))),
+        grid.cell(align(left, advisors.join([\ ]))),
+      ))
+    }
+
+    #layout(avail => context {
+      let logo-h = measure(logo-grid, width: avail.width).height
+      let h = measure(body-content, width: avail.width).height
+      let spacing = avail.height - logo-h - h - 8mm
+      logo-grid
+      v(if spacing < 0pt { 0pt } else if spacing > 1.5cm { 1.5cm } else { spacing })
+      body-content
+    })
   ]
 }
