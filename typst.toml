@@ -1,26 +1,34 @@
 [package]
-name = "cleanified-hpi-thesis"
+name = "oth-regensburg-thesis"
 version = "0.1.0"
 entrypoint = "template/lib.typ"
 authors = [
     "Robert Richter <https://github.com/judgeNotFound>",
     "Felix Hoffmann <https://github.com/felixhoffmnn>",
+    "Korbinian Hutter <https://github.com/korbinianhutter>",
 ]
 license = "MIT"
 disciplines = [
     "computer-science",
+    "artificial-intelligence",
     "engineering",
     "mathematics",
     "medicine",
     "business",
 ]
-description = "A clean thesis template for Bachelor's and Master's theses at HPI, University of Potsdam."
-repository = "https://github.com/felixhoffmnn/hpi-thesis-template"
+description = "A clean thesis template for Bachelor's and Master's theses at OTH Regensburg."
+repository = "https://github.com/felixhoffmnn/oth-thesis-template"
 keywords = [
-    "HPI",
-    "Hasso-Plattner-Institut",
-    "Hasso Plattner Institute",
-    "University of Potsdam",
+    "OTH",
+    "OTH Regensburg",
+    "OTH-Regensburg",
+    "Ostbayerische Technische Hochschule",
+    "Ostbayerische Technische Hochschule Regensburg",
+    "University of Regensburg",
+    "Bachelor's thesis",
+    "Master's thesis",
+    "Bachelorsthesis",
+    "Mastersthesis",
     "Bachelorthesis",
     "Masterthesis",
     "Bachelorarbeit",

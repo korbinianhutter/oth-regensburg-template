@@ -1,4 +1,4 @@
-#let hpi-title-page(
+#let oth-title-page(
   professor: "",
   advisors: (),
   chair: "",
@@ -8,9 +8,9 @@
   study-program: "",
   date: none,
   type: "",
-  accent-color: rgb("#4f5358"),
-  university-logo: "up-logo.svg",
-  institute-logo: "hpi-logo.svg",
+  accent-color: rgb("#164194"),
+  university-logo: "oth-logo.png",
+  institute-logo: "company-logo.svg",
   labels: (:),
 ) = {
   assert(type in ("Bachelor", "Master", ""), message: "type must be 'Bachelor' or 'Master'")
@@ -26,10 +26,10 @@
     #grid(
       columns: (1fr, 1fr),
       rows: (80pt, 80pt),
-      grid.cell(image(university-logo, alt: "University logo")),
+      grid.cell(image(university-logo, alt: "OTH Regensburg logo")),
       grid.cell(align(right, image(
         institute-logo,
-        alt: "Institute logo",
+        alt: "Logo of associated company or institution",
       ))),
     )
 

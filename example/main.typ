@@ -1,6 +1,6 @@
-// For local development, replace the import below with:
-// #import "../template/lib.typ": *
-#import "@preview/cleanified-hpi-thesis:0.1.0": *
+// For use in Typst Universe, replace the import below with:
+// #import "@preview/oth-regensburg-thesis:0.1.0": *
+#import "../template/lib.typ": *
 
 #let abstract = [
   This is a very good abstract.
@@ -19,7 +19,7 @@
   translation: "Eine adäquate Übersetzung meines Titels",
   name: "Max Mustermann",
   date: "17. Juli, 2025",
-  study-program: "IT-Systems Engineering",
+  study-program: "Computer Science",
   chair: "Data-Intensive Internet Computing",
   professor: "Prof. Dr. Rosseforp Renttalp",
   advisors: ("This person", "Someone Else"),
@@ -31,8 +31,8 @@
   // lang: "de",  // Switch all labels to German defaults
   // typography: (font: "STIX Two Text", body-text-size: 12pt),
   // layout: (for-print: true, toc-depth: 2),
-  // appearance: (accent-color: rgb("#B1063A")),
-  // labels: (declaration-city: "Berlin"),
+  // appearance: (accent-color: rgb("#164194")),
+  // labels: (declaration-city: "Regensburg"),
 )
 
 = Introduction
