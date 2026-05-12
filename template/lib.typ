@@ -9,12 +9,6 @@
   acknowledgements: "Acknowledgements",
   contents: "Contents",
   bibliography: "Bibliography",
-  declaration-title: "Declaration of Authorship",
-  declaration-text: [
-    I hereby declare that this thesis is my own unaided work. All direct or
-    indirect sources used are acknowledged as references.
-  ],
-  declaration-city: "Regensburg",
   submitted-by: "submitted by",
   thesis-purpose: "in partial fulfillment of the requirements for the academic degree",
   study-program-label: "in the study program",
@@ -41,13 +35,6 @@
   acknowledgements: "Danksagung",
   contents: "Inhaltsverzeichnis",
   bibliography: "Literaturverzeichnis",
-  declaration-title: "Eigenständigkeitserklärung",
-  declaration-text: [
-    Ich erkläre hiermit, dass ich die vorliegende Arbeit selbstständig verfasst
-    und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet
-    habe.
-  ],
-  declaration-city: "Regensburg",
   submitted-by: "vorgelegt von",
   thesis-purpose: "als Teil der Anforderungen zur Erlangung des akademischen Grades",
   study-program-label: "im Studiengang",
@@ -111,6 +98,8 @@
   type: "",
   // Study Program of the student
   study-program: "",
+  // German name of the study program (used on the declaration page)
+  study-program-de: "",
   // First advising professor
   professor: "",
   // Second examiner (optional)
@@ -352,20 +341,60 @@
 
   pagebreak()
   if lay.for-print { pagebreak() }
-  heading(level: 1, numbering: none, l.at("declaration-title"))
 
-  v(0.5cm)
-  block(l.at("declaration-text"))
+  // Declaration of Authorship.
+  {
+    let decl-thesis-word = if type == "Master" { l.at("master-thesis-kind") } else { l.at("bachelor-thesis-kind") }
+    let name-parts = name.split(" ")
+    let decl-last-name = name-parts.last()
+    let decl-first-name = if name-parts.len() > 1 { name-parts.slice(0, -1).join(" ") } else { "" }
 
-  v(1.5cm)
-  [#l.at("declaration-city"), #date]
-  v(1cm)
-  grid(
-    columns: (1fr, 1fr),
-    [],
-    [
-      #line(length: 100%, stroke: 0.5pt)
-      #align(center, name)
-    ],
-  )
+    page(header: none, numbering: none, footer: [
+      #set text(font: "Arial", size: 10pt)
+      #text(style: "italic")[Diese Erklärung ist mit der #decl-thesis-word (#underline[eingeheftet]) abzugeben.] \ \
+      #text(fill: app.accent-color)[Stand: 21.09.2018/Abt. III]
+    ])[
+      #set text(font: "Arial")
+
+      #image(app.university-logo, width: app.university-logo-width)
+
+      #v(1.5cm)
+
+      #align(center, text(weight: "bold", size: 1.3em)[
+        ERKLÄRUNG \
+        ZUR #upper(decl-thesis-word) VON
+      ])
+
+      #v(1cm)
+
+      #grid(
+        columns: (auto, 1fr),
+        row-gutter: 0.4em,
+        column-gutter: 0.5cm,
+        text(weight: "bold")[Name:],
+        [#decl-last-name],
+        text(weight: "bold")[Vorname:],
+        [#decl-first-name],
+        text(weight: "bold")[Studiengang:],
+        [#if study-program-de != "" { study-program-de } else { study-program }],
+      )
+
+      #v(0.8cm)
+
+      #enum(
+        [Mir ist bekannt, dass dieses Exemplar der #decl-thesis-word als Prüfungsleistung in das Eigentum der Ostbayerischen Technischen Hochschule Regensburg übergeht.],
+        [Ich erkläre hiermit, dass ich diese #decl-thesis-word selbständig verfasst, noch nicht anderweitig für Prüfungszwecke vorgelegt, keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie wörtliche und sinngemäße Zitate als solche gekennzeichnet habe.],
+      )
+
+      #v(3cm)
+
+      Regensburg, den
+
+      #v(1cm)
+
+      ......................................................
+      #linebreak()
+      Unterschrift
+    ]
+  }
 }
