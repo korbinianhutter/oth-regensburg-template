@@ -89,6 +89,7 @@
 #let default-appearance = (
   accent-color: rgb("#000"),
   university-logo: "oth-logo.png",
+  university-logo-width: 6.5cm,
   company-logo: none,
 )
 
@@ -179,6 +180,7 @@
     date: date,
     accent-color: app.accent-color,
     university-logo: app.university-logo,
+    university-logo-width: app.university-logo-width,
     company-logo: app.company-logo,
     labels: l,
   )

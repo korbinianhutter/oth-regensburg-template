@@ -11,6 +11,7 @@
   type: "",
   accent-color: rgb("#164194"),
   university-logo: "oth-logo.png",
+  university-logo-width: 6.5cm,
   company-logo: none,
   labels: (:),
 ) = {
@@ -27,7 +28,7 @@
     #grid(
       columns: (1fr, 1fr),
       rows: (80pt, 80pt),
-      grid.cell(image(university-logo, alt: "OTH Regensburg logo")),
+      grid.cell(image(university-logo, width: university-logo-width, alt: "OTH Regensburg logo")),
       grid.cell(align(right, if company-logo != none {
         company-logo
       })),
