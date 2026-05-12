@@ -43,36 +43,42 @@
       ]
       #line(length: 100%, stroke: 0.75pt + accent-color)
     ])
+    
+    #align(center, text(1.6em, weight: "bold", thesis-kind))
 
-    #align(center, text(1.5em, weight: "bold", name))
-    #if student-id != "" [
-      #v(-0.6em)
-      #align(center, labels.at("student-id-label") + ": " + student-id)
-      #v(1em)
-    ]
+    #v(0.2em)
+    #align(center, labels.at("thesis-purpose"))
 
     #align(center, block[
-      #thesis-kind\
-      #labels.at("thesis-purpose")
-    ])
-
-    #align(center, text(1.5em, block[
-      #degree \
-      #text(style: "italic", "(" + abbreviation + ")")
-    ]))
-
-    #align(center, block[
-      #labels.at("study-program-label") \
-      #study-program
+      #text(1.5em, block[
+        #degree \
+        #text(style: "italic", "(" + abbreviation + ")")
+      ])
     ])
 
     #align(center, block[
-      #labels.at("submitted-on") #date #labels.at("submitted-on-suffix") \
-      #labels.at("faculty") \
-      #labels.at("university")
+      #text(labels.at("study-program-label"))
+      #text(1.1em, study-program) \
+      #text(labels.at("submitted-on-suffix"))
+      #text(1.1em, labels.at("faculty")) \
+      #text(labels.at("faculty-suffix"))
+      #text(1.1em, labels.at("university"))
     ])
 
-    #v(1cm)
+    #v(1em)
+    #align(center, labels.at("submitted-by"))
+
+    #align(center, block[
+      #text(1.3em, weight: "bold", name)
+      #if student-id != "" [ \
+        #(labels.at("student-id-label") + ": " + student-id)
+      ]
+    ])
+
+    #v(1em)
+    #align(center, date)
+
+    #v(3em)
     #align(center, grid(
       columns: (1fr, 1.8fr),
       rows: (18pt, 18pt),
