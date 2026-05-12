@@ -58,10 +58,10 @@
 // Default typography settings (font, sizes, spacing).
 #let default-typography = (
   font: "Libertinus Serif",
-  body-text-size: 11pt,
+  body-text-size: 12pt,
   line-spacing: 0.65em,
   justify: true,
-  heading-sizes: (h1: 20pt, h2: 16pt, h3: 14pt, h4: 12pt, fallback: 11pt),
+  heading-sizes: (h1: 20pt, h2: 16pt, h3: 14pt, h4: 12pt, fallback: 12pt),
 )
 
 // Default layout settings (margins, print mode, ToC depth).
