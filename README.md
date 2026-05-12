@@ -45,7 +45,7 @@ An example configuration is located in [`example/`](./example/main.typ).
   // layout: (for-print: true, toc-depth: 2),
   appearance: (
     // accent-color: rgb("#164194"),
-    company-logo: "company-logo.svg",
+    company-logo: image("company-logo.svg", alt: "Logo of associated company or institution", width: 5cm),
   ),
   // labels: (declaration-city: "Regensburg"),
 )

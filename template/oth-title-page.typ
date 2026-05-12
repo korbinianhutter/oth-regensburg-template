@@ -29,10 +29,7 @@
       rows: (80pt, 80pt),
       grid.cell(image(university-logo, alt: "OTH Regensburg logo")),
       grid.cell(align(right, if company-logo != none {
-        image(
-          company-logo,
-          alt: "Logo of associated company or institution",
-        )
+        company-logo
       })),
     )
 
