@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+  <rect width="200" height="80" fill="#cc53b2"/>
+  <text x="35" y="36" font-family="Arial, sans-serif" font-size="12" fill="#fff">Dummy Company Logo</text>
+  <text x="45" y="56" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff">company-logo.svg</text>
+</svg>

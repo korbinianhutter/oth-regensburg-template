@@ -85,7 +85,7 @@
 #let default-appearance = (
   accent-color: rgb("#000"),
   university-logo: "oth-logo.png",
-  institute-logo: "company-logo.svg",
+  company-logo: none,
 )
 
 // The project function defines how your document looks.
@@ -172,7 +172,7 @@
     date: date,
     accent-color: app.accent-color,
     university-logo: app.university-logo,
-    institute-logo: app.institute-logo,
+    company-logo: app.company-logo,
     labels: l,
   )
 

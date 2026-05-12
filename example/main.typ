@@ -31,7 +31,10 @@
   // lang: "de",  // Switch all labels to German defaults
   // typography: (font: "STIX Two Text", body-text-size: 12pt),
   // layout: (for-print: true, toc-depth: 2),
-  // appearance: (accent-color: rgb("#164194")),
+  appearance: (
+    // accent-color: rgb("#164194"),
+    company-logo: "company-logo.svg",
+  ),
   // labels: (declaration-city: "Regensburg"),
 )
 
