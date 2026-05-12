@@ -35,10 +35,14 @@
     )
 
     #align(center, block[
-      #line(length: 100%, stroke: 0.75pt + accent-color)\
-      #text(2em, weight: "bold", title) \ \
+      #line(length: 100%, stroke: 0.75pt + accent-color)
+      #v(-0.4cm)
+      #text(2em, weight: "bold", title)
+      #v(-0.4cm)
       #if translation != "" [
-        #text(1.5em, translation) \ \
+        #v(0.2cm)
+        #text(1.5em, translation)
+        #v(-0.1cm)
       ]
       #line(length: 100%, stroke: 0.75pt + accent-color)
     ])
