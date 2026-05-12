@@ -37,7 +37,9 @@
     #align(center, block[
       #line(length: 100%, stroke: 0.75pt + accent-color)\
       #text(2em, weight: "bold", title) \ \
-      #text(1.5em, translation) \ \
+      #if translation != "" [
+        #text(1.5em, translation) \ \
+      ]
       #line(length: 100%, stroke: 0.75pt + accent-color)
     ])
 

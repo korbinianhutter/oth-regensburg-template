@@ -16,7 +16,7 @@
 
 #show: project.with(
   title: "My Very Long, Informative, Expressive, and Definitely Fancy Title",
-  translation: "Eine adäquate Übersetzung meines Titels",
+  // translation: "Eine adäquate Übersetzung meines Titels",
   name: "Max Mustermann",
   date: "July 17th, 2025",
   study-program: "Computer Science",
