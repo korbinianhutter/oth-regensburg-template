@@ -62,13 +62,13 @@
       }))
 
       align(center, block({
-        text(labels.at("study-program-label"))
+        labels.at("study-program-label") + " "
         text(1.1em, study-program)
         linebreak()
-        text(labels.at("submitted-on-suffix"))
+        labels.at("submitted-on-suffix") + " "
         text(1.1em, labels.at("faculty"))
         linebreak()
-        text(labels.at("faculty-suffix"))
+        labels.at("faculty-suffix") + " "
         text(1.1em, labels.at("university"))
       }))
 
