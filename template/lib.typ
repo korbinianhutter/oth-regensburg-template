@@ -70,6 +70,7 @@
   for-print: false,
   chapter-pagebreak: false,
   toc-depth: 4,
+  show-header: true,
 )
 
 // Default appearance settings (colors, logos).
@@ -86,6 +87,8 @@
 #let project(
   // The title of the thesis
   title: "",
+  // A shortened title for use in the page header
+  short-title: "",
   // The translated title of the thesis
   translation: "",
   // The name of the student writing the thesis
@@ -296,6 +299,7 @@
   set page(
     numbering: "1",
     header: context {
+      if not lay.show-header { return }
       if is-page-empty() {
         return
       }
@@ -303,13 +307,6 @@
       // Calculate the body page number relative to the start of the main body.
       let body-start-page = query(<body-start>).first().location().page()
       let i = here().page() - body-start-page + 1
-
-      // Skip headers on pages that start a chapter heading (level 1 only).
-      if query(heading.where(level: 1)).any(it => (
-        it.location().page() == here().page()
-      )) {
-        return
-      }
 
       // Find the heading of the section we are currently in.
       let before = query(selector(heading).before(here()))
@@ -320,7 +317,7 @@
           columns: (1fr, 10fr, 1fr),
           align: (left, center, right),
           if calc.even(i) [#i],
-          if calc.even(i) { author } else { title },
+          if calc.even(i) { author } else { if short-title != "" { short-title } else { title } },
           if calc.odd(i) [#i],
         )
       }

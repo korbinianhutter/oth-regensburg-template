@@ -17,6 +17,7 @@
 #show: project.with(
   title: "My Very Long, Informative, Expressive, and Definitely Fancy Title",
   // translation: "Eine adäquate Übersetzung meines Titels",
+  short-title: "My Very Short but still Informative Title", // Optional, will be used in headers and footers if provided
   name: "Max Mustermann",
   student-id: "1234567",
   date: "July 17th, 2025",
@@ -34,7 +35,11 @@
   bibliography: bibliography("references.bib"),
   // lang: "de",  // Switch all labels to German defaults
   // typography: (font: "STIX Two Text", body-text-size: 12pt),
-  // layout: (for-print: true, toc-depth: 2),
+  // layout: (
+  //   // for-print: true, 
+  //   // toc-depth: 2,
+  //   show-header: false,  // Hide the header on the title page
+  // ),
   appearance: (
     // accent-color: rgb("#164194"),
     company-logo: image("company-logo.svg", alt: "Logo of associated company or institution", width: 5cm),
