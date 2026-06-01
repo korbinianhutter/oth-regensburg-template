@@ -27,7 +27,7 @@
   professor: "Prof. Dr. Rosseforp Renttalp",
   second-professor: "Prof. Dr. Anothera Examinia",
   advisors: (
-    "This person",  // Even for a single advisor, Typst requires the subsequent comma!
+    "Alberta Zweistein, That One Company Ltd.",  // Even for a single advisor, Typst requires the subsequent comma!
     // "Someone Else"  // Add as many advisors as you like
   ),
   abstract: abstract,
