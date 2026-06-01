@@ -363,7 +363,7 @@
 
   // Declaration of Authorship.
   {
-    let decl-thesis-word = if degree == "Master" { l.at("master-thesis-kind") } else { l.at("bachelor-thesis-kind") }
+    let decl-thesis-word = if degree == "Master" { "Masterarbeit" } else { "Bachelorarbeit" }
     let name-parts = name.split(" ")
     let decl-last-name = name-parts.last()
     let decl-first-name = if name-parts.len() > 1 { name-parts.slice(0, -1).join(" ") } else { "" }
@@ -395,7 +395,7 @@
         text(weight: "bold")[Vorname:],
         [#decl-first-name],
         text(weight: "bold")[Studiengang:],
-        [#if study-program-de != "" { study-program-de } else { study-program }],
+        [#if study-program-de != "" { study-program-de } else { study-program } (#if degree == "Master" { l.at("master-abbreviation") } else { l.at("bachelor-abbreviation") })],
       )
 
       #v(0.8cm)
