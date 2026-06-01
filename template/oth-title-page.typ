@@ -8,16 +8,16 @@
   translation: "",
   study-program: "",
   date: none,
-  type: "",
+  degree: "",
   accent-color: rgb("#164194"),
   university-logo: "oth-logo.png",
   university-logo-width: 6.5cm,
   company-logo: none,
   labels: (:),
 ) = {
-  assert(type in ("Bachelor", "Master", ""), message: "type must be 'Bachelor' or 'Master'")
+  assert(degree in ("Bachelor", "Master", ""), message: "degree must be 'Bachelor' or 'Master'")
 
-  let (thesis-kind, degree, abbreviation) = if type == "Master" {
+  let (thesis-kind, degree-name, degree-abbreviation) = if degree == "Master" {
     (labels.at("master-thesis-kind"), labels.at("master-degree"), labels.at("master-abbreviation"))
   } else {
     (labels.at("bachelor-thesis-kind"), labels.at("bachelor-degree"), labels.at("bachelor-abbreviation"))
@@ -55,9 +55,9 @@
 
       align(center, block({
         text(1.5em, block({
-          degree
+          degree-name
           linebreak()
-          text(style: "italic", "(" + abbreviation + ")")
+          text(style: "italic", "(" + degree-abbreviation + ")")
         }))
       }))
 

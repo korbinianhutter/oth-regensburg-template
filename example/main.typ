@@ -22,6 +22,8 @@
   student-id: "1234567",
   date: "July 17th, 2025",
   study-program: "Computer Science",
+  degree: "Master",
+  // field: "Engineering",  // "Science" (B.Sc./M.Sc.) (default), "Engineering" (B.Eng./M.Eng.), "Arts" (B.A./M.A.)
   professor: "Prof. Dr. Rosseforp Renttalp",
   second-professor: "Prof. Dr. Anothera Examinia",
   advisors: (
@@ -31,7 +33,6 @@
   abstract: abstract,
   abstract-de: abstract-de,
   acknowledgements: acknowledgements,
-  type: "Master",
   bibliography: bibliography("references.bib"),
   // lang: "de",  // Switch all labels to German defaults
   // typography: (font: "STIX Two Text", body-text-size: 12pt),

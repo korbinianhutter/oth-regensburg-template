@@ -98,7 +98,9 @@
   // Date of handing in the thesis
   date: none,
   // "Bachelor" or "Master"
-  type: "",
+  degree: "",
+  // Degree field: "Science", "Engineering", or "Arts"
+  field: "Science",
   // Study Program of the student
   study-program: "",
   // German name of the study program (used on the declaration page)
@@ -148,6 +150,26 @@
   }
   let l = base-labels + labels
 
+  // Override degree name and abbreviation based on the field parameter.
+  let degree-labels = if field == "Engineering" {
+    (
+      bachelor-degree: "Bachelor of Engineering",
+      bachelor-abbreviation: "B.Eng.",
+      master-degree: "Master of Engineering",
+      master-abbreviation: "M.Eng.",
+    )
+  } else if field == "Arts" {
+    (
+      bachelor-degree: "Bachelor of Arts",
+      bachelor-abbreviation: "B.A.",
+      master-degree: "Master of Arts",
+      master-abbreviation: "M.A.",
+    )
+  } else {
+    (:)
+  }
+  let l = l + degree-labels
+
   // Set the document's basic properties.
   set document(author: name, title: title)
   set page(
@@ -169,7 +191,7 @@
     title: title,
     translation: translation,
     study-program: study-program,
-    type: type,
+    degree: degree,
     date: date,
     accent-color: app.accent-color,
     university-logo: app.university-logo,
@@ -341,7 +363,7 @@
 
   // Declaration of Authorship.
   {
-    let decl-thesis-word = if type == "Master" { l.at("master-thesis-kind") } else { l.at("bachelor-thesis-kind") }
+    let decl-thesis-word = if degree == "Master" { l.at("master-thesis-kind") } else { l.at("bachelor-thesis-kind") }
     let name-parts = name.split(" ")
     let decl-last-name = name-parts.last()
     let decl-first-name = if name-parts.len() > 1 { name-parts.slice(0, -1).join(" ") } else { "" }
