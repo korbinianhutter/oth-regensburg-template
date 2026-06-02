@@ -122,6 +122,11 @@
   // Optional bibliography content (e.g., bibliography("references.bib")).
   // If provided, a bibliography section will be added at the end.
   bibliography: none,
+  // Optional content to insert between the TOC and the main body (e.g., a glossary,
+  // list of figures, etc.). Rendered without header, with roman page numbering.
+  // When for-print is true, a blank page is inserted after it if needed so the
+  // first chapter starts on an odd page.
+  pre-body: none,
   // Document language (e.g., "en", "de"). Affects label defaults.
   lang: "en",
   // Typography settings (font, sizes, spacing). Merged with defaults.
@@ -170,13 +175,30 @@
   }
   let l = l + degree-labels
 
+  // Creates a pagebreak to the given parity where empty pages
+  // can be detected via `is-page-empty`.
+  let detectable-pagebreak(to: "odd") = {
+    [#metadata(none) <empty-page-start>]
+    pagebreak(to: to)
+    [#metadata(none) <empty-page-end>]
+  }
+
+  // Workaround for https://github.com/typst/typst/issues/2722
+  let is-page-empty() = {
+    let page-num = here().page()
+    query(<empty-page-start>)
+      .zip(query(<empty-page-end>))
+      .any(((start, end)) => {
+        (
+          start.location().page() < page-num
+            and page-num < end.location().page()
+        )
+      })
+  }
+
   // Set the document's basic properties.
   set document(author: name, title: title)
-  set page(
-    margin: lay.margin,
-    numbering: "1",
-    number-align: end,
-  )
+  set page(margin: lay.margin)
   set text(font: typo.font, size: typo.body-text-size, lang: lang)
   set par(leading: typo.line-spacing)
   set math.equation(numbering: "(1)")
@@ -252,23 +274,28 @@
   // Fallback for deeper heading levels.
   show heading: set text(typo.heading-sizes.at("fallback"), weight: 400)
 
+  // Footer for numbered pages (roman and arabic).
+  let the-footer = context {
+    if is-page-empty() { return }
+    let page-align = if lay.for-print and calc.even(here().page()) { start } else { end }
+    align(page-align, counter(page).display())
+  }
+
+  // Front matter (roman-numbered).
+  if lay.for-print { detectable-pagebreak() }
+  counter(page).update(1)
+  set page(
+    numbering: "i",
+    footer: the-footer,
+  )
+
   // Helper: insert a front matter section followed by a page break.
   let front-section(title-text, content) = {
     heading(level: 1, numbering: none, outlined: false, title-text)
     v(0.5cm)
     content
-    pagebreak()
-    if lay.for-print { pagebreak() }
+    if lay.for-print { detectable-pagebreak() } else { pagebreak() }
   }
-
-  // Front matter (unnumbered pages).
-  set page(numbering: none)
-  pagebreak()
-  if lay.for-print { pagebreak() }
-
-  // Roman-numbered front matter.
-  counter(page).update(1)
-  set page(numbering: "i")
 
   front-section(l.at("abstract"), abstract)
 
@@ -295,32 +322,20 @@
     ],
     depth: lay.toc-depth,
   )
-  pagebreak()
-  if lay.for-print { pagebreak() }
+
+  // Optional pre-body content (e.g., glossary, table of figures).
+  if pre-body != none {
+    pagebreak()
+    pre-body
+    if lay.for-print { detectable-pagebreak(to: "odd") } else { pagebreak() }
+  } else if lay.for-print {
+    detectable-pagebreak(to: "odd")
+  } else {
+    pagebreak()
+  }
 
   // Main body.
   set par(justify: typo.justify)
-
-  // Creates a pagebreak to the given parity where empty pages
-  // can be detected via `is-page-empty`.
-  let detectable-pagebreak(to: "odd") = {
-    [#metadata(none) <empty-page-start>]
-    pagebreak(to: to)
-    [#metadata(none) <empty-page-end>]
-  }
-
-  // Workaround for https://github.com/typst/typst/issues/2722
-  let is-page-empty() = {
-    let page-num = here().page()
-    query(<empty-page-start>)
-      .zip(query(<empty-page-end>))
-      .any(((start, end)) => {
-        (
-          start.location().page() < page-num
-            and page-num < end.location().page()
-        )
-      })
-  }
 
   // Mark the start of the main body for header page number calculation.
   [#metadata(none) <body-start>]
@@ -328,6 +343,7 @@
   // Configure page properties.
   set page(
     numbering: "1",
+    footer: the-footer,
     header: context {
       if not lay.show-header { return }
       if is-page-empty() {
@@ -360,8 +376,7 @@
     bibliography
   }
 
-  pagebreak()
-  if lay.for-print { pagebreak() }
+  if lay.for-print { detectable-pagebreak() }
 
   // Declaration of Authorship.
   {
