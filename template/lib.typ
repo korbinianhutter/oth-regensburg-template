@@ -281,6 +281,14 @@
   }
 
   // Table of contents.
+  set outline.entry(fill: none)
+  show outline.entry.where(level: 1): it => context {
+    let entries = query(outline.entry.where(level: 1))
+    if entries.first().location() != it.location() {
+      v(1.2em, weak: true)
+    }
+    strong(it)
+  }
   outline(
     title: [
       #text(size: typo.heading-sizes.at("h1"), fill: app.accent-color, l.at("contents"))
