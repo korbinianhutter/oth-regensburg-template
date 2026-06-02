@@ -335,13 +335,7 @@
       if before != () {
         set text(0.95em)
         let author = text(style: "italic", name)
-        grid(
-          columns: (1fr, 10fr, 1fr),
-          align: (left, center, right),
-          if calc.even(i) [#i],
-          if calc.even(i) { author } else { if short-title != "" { short-title } else { title } },
-          if calc.odd(i) [#i],
-        )
+        align(center, if calc.even(i) { author } else { if short-title != "" { short-title } else { title } })
       }
       align(center, line(length: 100%, stroke: 0.5pt + app.accent-color))
     },
