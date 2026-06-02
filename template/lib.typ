@@ -87,7 +87,7 @@
 #let project(
   // The title of the thesis
   title: "",
-  // A shortened title for use in the page header
+  // A shortened title (currently unused)
   short-title: "",
   // The translated title of the thesis
   translation: "",
@@ -350,18 +350,18 @@
         return
       }
 
-      // Calculate the body page number relative to the start of the main body.
-      let body-start-page = query(<body-start>).first().location().page()
-      let i = here().page() - body-start-page + 1
+      // Find all level-1 headings before the current position.
+      let before-h1 = query(selector(heading.where(level: 1)).before(here()))
 
-      // Find the heading of the section we are currently in.
-      let before = query(selector(heading).before(here()))
-      if before != () {
+      // Show the chapter title only when no level-1 heading starts on this page.
+      let current-page = here().page()
+      let h1-on-this-page = query(heading.where(level: 1)).filter(h => h.location().page() == current-page)
+
+      if before-h1 != () and h1-on-this-page == () {
         set text(0.95em)
-        let author = text(style: "italic", name)
-        align(center, if calc.even(i) { author } else { if short-title != "" { short-title } else { title } })
+        align(center, before-h1.last().body)
+        align(center, line(length: 100%, stroke: 0.5pt + app.accent-color))
       }
-      align(center, line(length: 100%, stroke: 0.5pt + app.accent-color))
     },
   )
   set heading(numbering: "1.1.1.1")
