@@ -33,6 +33,9 @@
   abstract: abstract,
   abstract-de: abstract-de,
   acknowledgements: acknowledgements,
+  // pre-body: [  // Optional content to be placed between the table of contents and the main body, e.g., glossary, list of figures, etc.
+  //   #glossary()  // example for "glossy"-package
+  // ],
   bibliography: bibliography("references.bib"),
   // lang: "de",  // Switch all labels to German defaults
   // typography: (font: "STIX Two Text", body-text-size: 12pt),
