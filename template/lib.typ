@@ -254,7 +254,7 @@
 
   // Helper: insert a front matter section followed by a page break.
   let front-section(title-text, content) = {
-    heading(level: 1, numbering: none, title-text)
+    heading(level: 1, numbering: none, outlined: false, title-text)
     v(0.5cm)
     content
     pagebreak()
