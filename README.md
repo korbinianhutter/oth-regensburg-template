@@ -1,13 +1,13 @@
-# OTH Regensburg Thesis Template
+# <span style="color:#249bab; font-family:'Buenard'; font-weight:'bold'">typst</span> OTH Regensburg Thesis Template
 
-This template is for OTH Regensburg students writing their Bachelor's or Master's thesis.
+A [Typst](https://typst.app/home/) template from and for students at [OTH Regensburg](https://www.oth-regensburg.de/) writing their Bachelor's or Master's thesis.
 
-> This repository is a fork of the [HPI Thesis Template](https://typst.app/universe/package/cleanified-hpi-thesis/) ([Source](https://github.com/felixhoffmnn/hpi-thesis-template)), adapted for OTH Regensburg.
+> This repository is a fork of the [HPI Thesis Template](https://typst.app/universe/package/cleanified-hpi-thesis/) ([Source](https://github.com/felixhoffmnn/hpi-thesis-template)), with additional features and style adapted for OTH Regensburg.
 
 ## Disclaimer
 
 - This template is not official.
-- Official university guidelines may differ from the ones used in this template.
+- Official OTH guidelines may differ from the ones used in this template.
 
 ## Example Title Page
 
