@@ -40,9 +40,11 @@
   // lang: "de",  // Switch all labels to German defaults
   // typography: (font: "STIX Two Text", body-text-size: 12pt),
   layout: (
-    // for-print: true, 
-    // toc-depth: 2,
-    show-header: true,  // Shows the current h1-heading in the header of document body pages, except on pages defining a new h1
+    // margin: (left: 35mm, right: 35mm, top: 30mm, bottom: 30mm),  // Page margins
+    // chapter-pagebreak: false,  // Start new chapters on the same page
+    for-print: true,  // Optimize for printing (blank pages on odd numbers)
+    // toc-depth: 2,  // Limit table of contents depth
+    // show-header: false,  // Hides the current chapter title in the page header (except on pages with new h1)
   ),
   appearance: (
     // accent-color: rgb("#164194"),

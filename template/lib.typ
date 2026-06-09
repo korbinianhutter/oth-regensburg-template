@@ -68,7 +68,7 @@
 #let default-layout = (
   margin: (left: 35mm, right: 35mm, top: 30mm, bottom: 30mm),
   for-print: false,
-  chapter-pagebreak: false,
+  chapter-pagebreak: true,
   toc-depth: 4,
   show-header: true,
 )

@@ -21,7 +21,12 @@ This template is for OTH Regensburg students writing their Bachelor's or Master'
 - Highly customizable metadata: title, optional translated title, optional short title, student name, student ID, date, study program, degree, one or multiple advisors, etc.
 - Optional pre-body content between table of contents and main body (so called front-matter, e.g. glossary or lists of figures/tables).
 - Automatically adds OTH-style Declaration of Authorship at the end of the document.
-- Configurable typography and layout options (for-print, toc-depth, show-header).
+- Configurable typography and layout options:
+  - `margin`: Set custom page margins (left, right, top, bottom).
+  - `chapter-pagebreak`: Start new chapters (level 1 headings) on a new page (default: true).
+  - `for-print`: Optimize for printing with blank pages on odd numbers.
+  - `toc-depth`: Control table of contents depth.
+  - `show-header`: Display chapter title in page header.
 
 ## Getting Started
 
@@ -64,9 +69,11 @@ An example configuration is located in [`example/`](./example/main.typ).
   // lang: "de",
   // typography: (font: "STIX Two Text", body-text-size: 12pt),
   layout: (
-    // for-print: true,
+    // margin: (left: 35mm, right: 35mm, top: 30mm, bottom: 30mm),
+    // chapter-pagebreak: false,
+    for-print: true,
     // toc-depth: 2,
-    show-header: true,
+    // show-header: false,
   ),
   appearance: (
     // accent-color: rgb("#164194"),
