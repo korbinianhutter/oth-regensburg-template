@@ -2,11 +2,18 @@
 // #import "@preview/oth-regensburg-thesis:0.1.0": *
 #import "../template/lib.typ": *
 
+#let ai-statement = [
+  #set par(justify: true)
+  This thesis was authored with the assistance of Artificial Intelligence (AI).
+]
+
 #let abstract = [
+  #set par(justify: true)
   This is a very good abstract.
 ]
 
 #let abstract-de = [
+  #set par(justify: true)
   Die ist eine wirklich gute Zusammenfassung.
 ]
 
@@ -30,6 +37,7 @@
     "Alberta Zweistein, That One Company Ltd.",  // Even for a single advisor, Typst requires the subsequent comma!
     // "Someone Else"  // Add as many advisors as you like
   ),
+  // ai-statement: ai-statement,  // Optional, but recommended for transparency and good scientific practice
   abstract: abstract,
   abstract-de: abstract-de,
   acknowledgements: acknowledgements,

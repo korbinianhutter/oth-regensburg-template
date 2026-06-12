@@ -111,6 +111,8 @@
   second-professor: "",
   // List of Advisors (e.g., ("Karla Musterfrau", "Max Mustermann"))
   advisors: (),
+  // Optional statement on AI tool usage; rendered before the abstract when provided.
+  ai-statement: "",
   // The abstract of the thesis
   abstract: "",
   // The German translation of the abstract
@@ -295,6 +297,10 @@
     v(0.5cm)
     content
     if lay.for-print { detectable-pagebreak() } else { pagebreak() }
+  }
+
+  if ai-statement != "" {
+    front-section("Statement on the Use of AI Tools", ai-statement)
   }
 
   front-section(l.at("abstract"), abstract)

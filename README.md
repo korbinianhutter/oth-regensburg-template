@@ -20,6 +20,7 @@ A [Typst](https://typst.app/home/) template from and for students at [OTH Regens
 - Customizable appearance (e.g. translated title, company logo, accent color).
 - Highly customizable metadata: title, optional translated title, optional short title, student name, student ID, date, study program, degree, one or multiple advisors, etc.
 - Optional pre-body content between table of contents and main body (so called front-matter, e.g. glossary or lists of figures/tables).
+- Optional AI statement for transparency about the use of AI tools in the writing process.
 - Automatically adds OTH-style Declaration of Authorship at the end of the document.
 - Configurable typography and layout options:
   - `margin`: Set custom page margins (left, right, top, bottom).
@@ -59,6 +60,7 @@ An example configuration is located in [`example/`](./example/main.typ).
     "This person",  // Even for a single advisor, Typst requires the subsequent comma!
     // "Someone Else"  // Add as many advisors as you like
   ),
+  // ai-statement: ai-statement,  // If you used AI tools in the writing process, you can add a statement for transparency
   abstract: abstract,
   abstract-de: abstract-de,
   acknowledgements: acknowledgements,
