@@ -27,6 +27,7 @@
   master-thesis-kind: "Master's Thesis",
   master-degree: "Master of Science",
   master-abbreviation: "M.Sc.",
+  chapter-supplement: "Chapter",
 )
 
 #let default-labels-de = (
@@ -53,6 +54,7 @@
   master-thesis-kind: "Masterarbeit",
   master-degree: "Master of Science",
   master-abbreviation: "M.Sc.",
+  chapter-supplement: "Kapitel",
 )
 
 // Default typography settings (font, sizes, spacing).
@@ -245,6 +247,7 @@
   }
 
   // Configure chapter headings (level 1).
+  show heading.where(level: 1): set heading(supplement: [#l.at("chapter-supplement")])
   show heading.where(level: 1): it => {
     if lay.chapter-pagebreak { pagebreak(weak: true) }
     styled-heading(it, typo.heading-sizes.at("h1"), app.accent-color, 5%, 1.5em)
