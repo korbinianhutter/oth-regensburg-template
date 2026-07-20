@@ -80,7 +80,7 @@ An example configuration is located in [`example/`](./example/main.typ).
   appearance: (
     // accent-color: rgb("#164194"),
     company-logo: image("company-logo.svg", alt: "Logo of associated company or institution", width: 5cm),
-    // university-logo-width: 5cm,
+    // oth-logo-width: 5cm,
   ),
 )
 

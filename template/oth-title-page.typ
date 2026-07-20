@@ -10,8 +10,8 @@
   date: none,
   degree: "",
   accent-color: rgb("#164194"),
-  university-logo: "oth-logo.png",
-  university-logo-width: 6.5cm,
+  oth-logo: "oth-logo.png",
+  oth-logo-width: 6.5cm,
   company-logo: none,
   labels: (:),
 ) = {
@@ -28,7 +28,7 @@
     #let logo-grid = grid(
       columns: (1fr, 1fr),
       rows: (80pt,),
-      grid.cell(image(university-logo, width: university-logo-width, alt: "OTH Regensburg logo")),
+      grid.cell(image(oth-logo, width: oth-logo-width, alt: "OTH Regensburg logo")),
       grid.cell(align(right, if company-logo != none {
         company-logo
       })),

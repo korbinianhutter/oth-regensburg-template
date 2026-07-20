@@ -78,8 +78,8 @@
 // Default appearance settings (colors, logos).
 #let default-appearance = (
   accent-color: rgb("#000"),
-  university-logo: "oth-logo.png",
-  university-logo-width: 6.5cm,
+  oth-logo: "oth-logo.png",
+  oth-logo-width: 6.5cm,
   company-logo: none,
 )
 
@@ -220,8 +220,8 @@
     degree: degree,
     date: date,
     accent-color: app.accent-color,
-    university-logo: app.university-logo,
-    university-logo-width: app.university-logo-width,
+    oth-logo: app.oth-logo,
+    oth-logo-width: app.oth-logo-width,
     company-logo: app.company-logo,
     labels: l,
   )
@@ -401,7 +401,7 @@
     ])[
       #set text(font: "Arial")
 
-      #image(app.university-logo, width: app.university-logo-width)
+      #image(app.oth-logo, alt: "OTH Regensburg logo", width: 6.5cm)
 
       #v(1.5cm)
 
