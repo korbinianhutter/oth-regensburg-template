@@ -3,18 +3,11 @@
 #import "../template/lib.typ": *
 
 #let ai-statement = [
-  #set par(justify: true)
   This thesis was authored with the assistance of Artificial Intelligence (AI).
 ]
 
 #let abstract = [
-  #set par(justify: true)
   This is a very good abstract.
-]
-
-#let abstract-de = [
-  #set par(justify: true)
-  Die ist eine wirklich gute Zusammenfassung.
 ]
 
 #let acknowledgements = [
@@ -37,10 +30,11 @@
     "Alberta Zweistein, That One Company Ltd.",  // Even for a single advisor, Typst requires the subsequent comma!
     // "Someone Else"  // Add as many advisors as you like
   ),
-  // ai-statement: ai-statement,  // Optional, but recommended for transparency and good scientific practice
-  abstract: abstract,
-  abstract-de: abstract-de,
-  acknowledgements: acknowledgements,
+  pre-toc: (  // Front-matter sections shown before the table of contents, each on its own page
+    // (title: "Statement on the Use of AI Tools", body: ai-statement),
+    (title: "Abstract", body: abstract),
+    (title: "Acknowledgements", body: acknowledgements),
+  ),
   // pre-body: [  // Optional content to be placed between the table of contents and the main body, e.g., glossary, list of figures, etc.
   //   #glossary()  // example for "glossy"-package
   // ],

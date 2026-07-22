@@ -19,8 +19,8 @@ A [Typst](https://typst.app/home/) template from and for students at [OTH Regens
 - Suitable for both Bachelor's and Master's theses.
 - Customizable appearance (e.g. translated title, company logo, accent color).
 - Highly customizable metadata: title, optional translated title, optional short title, student name, student ID, date, study program, degree, one or multiple advisors, etc.
-- Optional pre-body content between table of contents and main body (so called front-matter, e.g. glossary or lists of figures/tables).
-- Optional AI statement for transparency about the use of AI tools in the writing process.
+- Flexible `pre-toc` front matter before the table of contents: a list of titled sections (e.g. confidentiality clause, statement on the use of AI tools, abstract, acknowledgements), each rendered on its own page.
+- Optional `pre-body` content between table of contents and main body (e.g. glossary or lists of figures/tables).
 - Automatically adds OTH-style Declaration of Authorship at the end of the document.
 - Configurable typography and layout options:
   - `margin`: Set custom page margins (left, right, top, bottom).
@@ -60,10 +60,11 @@ An example configuration is located in [`example/`](./example/main.typ).
     "This person",  // Even for a single advisor, Typst requires the subsequent comma!
     // "Someone Else"  // Add as many advisors as you like
   ),
-  // ai-statement: ai-statement,  // If you used AI tools in the writing process, you can add a statement for transparency
-  abstract: abstract,
-  abstract-de: abstract-de,
-  acknowledgements: acknowledgements,
+  pre-toc: (  // Front-matter sections shown before the table of contents, each on its own page
+    // (title: "Statement on the Use of AI Tools", body: ai-statement),
+    (title: "Abstract", body: abstract),
+    (title: "Acknowledgements", body: acknowledgements),
+  ),
   // pre-body: [  // Optional content to be placed between the table of contents and the main body
   //   #glossary()
   // ],

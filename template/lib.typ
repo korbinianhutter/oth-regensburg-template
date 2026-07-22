@@ -4,9 +4,6 @@
 
 // Default label sets for English and German.
 #let default-labels-en = (
-  abstract: "Abstract",
-  abstract-de: "Zusammenfassung",
-  acknowledgements: "Acknowledgements",
   contents: "Contents",
   bibliography: "Bibliography",
   submitted-by: "submitted by",
@@ -31,9 +28,6 @@
 )
 
 #let default-labels-de = (
-  abstract: "Zusammenfassung (Englisch)",
-  abstract-de: "Zusammenfassung",
-  acknowledgements: "Danksagung",
   contents: "Inhaltsverzeichnis",
   bibliography: "Literaturverzeichnis",
   submitted-by: "vorgelegt von",
@@ -113,16 +107,12 @@
   second-professor: "",
   // List of Advisors (e.g., ("Karla Musterfrau", "Max Mustermann"))
   advisors: (),
-  // Optional statement on AI tool usage; rendered before the abstract when provided.
-  ai-statement: "",
-  // The abstract of the thesis
-  abstract: "",
-  // The German translation of the abstract
-  // If not given, the page for German translation of abstract will not appear
-  abstract-de: "",
-  // The student may want to add acknowledgements
-  // If not given, the page for acknowledgements will not appear
-  acknowledgements: "",
+  // Front matter sections between the title page and the table of contents (e.g.,
+  // a confidentiality clause, a statement on AI use, and the abstract). Provide an
+  // array of `(title: [...], body: [...])` dictionaries; the template renders each
+  // title as a level-1 heading and starts each section on its own roman-numbered
+  // page. Symmetric to `pre-body`, but placed before the TOC instead of after it.
+  pre-toc: (),
   // Optional bibliography content (e.g., bibliography("references.bib")).
   // If provided, a bibliography section will be added at the end.
   bibliography: none,
@@ -298,22 +288,16 @@
   let front-section(title-text, content) = {
     heading(level: 1, numbering: none, outlined: false, title-text)
     v(0.5cm)
+    set par(justify: true)
     content
     if lay.for-print { detectable-pagebreak() } else { pagebreak() }
   }
 
-  if ai-statement != "" {
-    front-section("Statement on the Use of AI Tools", ai-statement)
-  }
-
-  front-section(l.at("abstract"), abstract)
-
-  if abstract-de != "" {
-    front-section(l.at("abstract-de"), abstract-de)
-  }
-
-  if acknowledgements != "" {
-    front-section(l.at("acknowledgements"), acknowledgements)
+  // Front matter sections between the title page and the TOC (confidentiality
+  // clause, statement on AI use, abstract, ...). The template owns the heading and
+  // pagination; each entry only provides a title and a body.
+  for section in pre-toc {
+    front-section(section.title, section.body)
   }
 
   // Table of contents.
