@@ -65,10 +65,10 @@
         labels.at("study-program-label") + " "
         text(1.1em, study-program)
         linebreak()
-        labels.at("submitted-on-suffix") + " "
+        labels.at("faculty-prefix") + " "
         text(1.1em, labels.at("faculty"))
         linebreak()
-        labels.at("faculty-suffix") + " "
+        labels.at("university-prefix") + " "
         text(1.1em, labels.at("university"))
       }))
 

@@ -50,7 +50,7 @@ An example configuration is located in [`example/`](./example/main.typ).
   // short-title: "My Very Short but still Informative Title", // Optional, currently unused
   name: "Max Mustermann",
   student-id: "1234567",
-  date: "July 17th, 2025",
+  date: "July 17, 2025",
   study-program: "Computer Science",
   degree: "Master",
   // field: "Engineering",  // "Science" (B.Sc./M.Sc.) (default), "Engineering" (B.Eng./M.Eng.), "Arts" (B.A./M.A.)
